@@ -1,0 +1,298 @@
+author = "ALKANET";
+onLoadName = "RTS game mode";
+onLoadMission = "RTS game mode created with RTS Engine.";
+overviewText = "RTS game mode created with RTS Engine.";
+loadScreen		= "loadScreen.paa";
+overviewPicture = "loadScreen.paa";
+
+
+saving = 0;
+
+#include "ui\variabels.hpp"
+
+//HUDS
+class RscTitles
+{
+
+	#include "ui\RscTitles\TerrorState_TownRaid.hpp"
+
+
+	
+};
+
+class RTS_SingleplayerMenu {
+	idd = -1;
+	onLoad="";
+	onUnload="";
+	movingEnable = 0;
+	class controlsBackground {
+	
+		
+		class ctrlStaticBackground;
+		
+		class Background : RscPicture
+		{
+			idc = -1;
+			text = "#(argb,8,8,3)color(1,1,1,1)";
+			x=0;
+			y=0;
+			w=1;
+			h=1;
+		};	
+		
+	};
+	
+	class controls {
+		
+		class BluforTitle: RscText
+		{
+			text="Blufor AI";
+			colorText[]={1,0,0,1};
+			x=0;
+			y=0;
+			w=1;
+			h=0.05;
+		};
+		
+		class BluforCombo: RscCombo
+		{
+			idc=102;
+			x=0;
+			y=0 + 0.05;
+			w=1;
+			h=0.05;
+			class Items
+			{
+				class Item0
+				{
+					text="1";
+					value=1;
+					default=1;
+				};
+				class Item1
+				{
+					text="2";
+					value=2;
+				};
+				class Item2
+				{
+					text="3";
+					value=3;
+				};
+				class Item3
+				{
+					text="4";
+					value=4;
+				};
+			};
+		};
+		
+		class OpforTitle: BluforTitle
+		{
+			text="Opfor AI";
+			y=0 + 0.05 + 0.05;
+			
+		};
+		class OpforCombo: BluforCombo
+		{
+			idc=103;
+			y=0 + 0.05 + 0.05 + 0.05;
+			class Items
+			{
+				class Item0
+				{
+					text="1";
+					value=1;
+					default=1;
+				};
+				class Item1
+				{
+					text="2";
+					value=2;
+				};
+				class Item2
+				{
+					text="3";
+					value=3;
+				};
+				class Item3
+				{
+					text="4";
+					value=4;
+				};
+			};
+		};
+		
+		class ButtonClose: TSButton
+		{
+			idc=2;
+			x=0;
+			y=1;
+			w=1;
+			h=0.08;
+			default=0;
+			text="Start";
+		};
+
+		
+	};
+};
+
+
+
+class CfgFunctions
+{
+
+	
+	class Alk_INIT
+	{
+		
+		
+		class Basic
+		{
+			file="functions\Game\Init";
+			class postInit{postInit = 1;};
+			
+			
+		};
+	};
+	class RTSENGINE_Camera
+	{
+		
+		
+		class Basic
+		{
+			file="functions\Engine\Camera";
+			class init{};
+			class addClickable{};
+			class removeClickable{};
+			class setIcon{};
+			
+		};
+	};
+	class Alk_Interface
+	{
+		class Basic
+		{
+			file="functions\Game\Interface";
+			class select{};
+			class selected{};
+			class unSelect{};
+			class init{};
+			class createSubMenu{};
+			class mapClick{};
+			class mapDrag{};
+			class setClickEvent{};
+			class resetClickEvent{};
+		};
+	};
+	class Alk_Building
+	{
+		class Basic
+		{
+			file="functions\Game\Building";
+			class createBuilding_Client{};
+			class createBuilding_Server{};
+			class placeBuilding{};
+			class doTarget{};
+			class enterHouse{};
+			class buyUnits_client{};
+			class buyUnits_server{};
+			class addGroupToPlayer{};
+			class addGroupToAll{};
+			class removeGroupFromPlayer{};
+			
+		};
+	};	
+	class Alk_AI
+	{
+		class Basic
+		{
+			file="functions\Game\AI";
+			class move{};
+			class attack{};
+		};
+	};
+	class Alk_Loops
+	{	
+		class Basic
+		{
+			file="functions\Game\Loops";
+			class client{};
+			class server{};	
+			class ai{};						
+		};
+	};
+	class Alk_Objective
+	{	
+		class Basic
+		{
+			file="functions\Game\Objective";
+			class capture_stop{};
+			class capture_client{};
+			class capture_server{};
+			class capture_setProgress{};
+			class capture_setOwner{};
+			class capture_setCapturePoint_server{};
+			class capture_setCapturePoint_client{};
+			class setWinCondition{};
+			
+			
+		};
+	};
+	class Alk_Resources
+	{	
+		class Basic
+		{
+			file="functions\Game\Resources";
+			class setPerSecond{};
+			class setValue{};
+			class getValue{};
+			class buy{};
+			class validate{};
+		};
+	};	
+};
+
+class RscActiveText
+{
+  idc = -1;
+  type = 11;
+  style = 48;
+  x = 0.75; y = 0.5;
+  w = 0.2; h = 0.035;
+  font="RobotoCondensed";
+  sizeEx = 0.024;
+  color[] = { 1, 1, 1, 1 };
+  colorActive[] = { 1, 0.2, 0.2, 1 };
+  soundEnter[] = { "", 0, 1 };	
+  soundPush[] = { "", 0, 1 };
+  soundClick[] = { "", 0, 1 };
+  soundEscape[] = { "", 0, 1 };
+  action = "";
+  text = "Text";
+  default = true;
+};
+
+class DDRscFlowButton:RscActiveText
+{
+	x = 0; 
+	y = 0;
+	w = 0.02;
+	h = 0.02;
+
+	style = 48 + 2048;
+	color[] = {1,1,1,0.5};
+	colorActive[] = {1,1,1,1};
+	colorDisabled[] = {1,1,1,1};
+	colorFocused[] = {1,0,1,1};
+
+	text = "a3\3den\data\controlsgroups\tutorial\close_ca.paa";
+};
+
+
+
+#include "minimap.hpp"
+
+#include "resources.hpp"
+#include "ui.hpp"
